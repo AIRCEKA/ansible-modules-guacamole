@@ -216,6 +216,21 @@ options:
             - Enable font smoothing
         type: bool
 
+    rdp_enable_wallpaper:
+        description:
+            - Enable wallpaper
+        type: bool
+
+    rdp_disable_audio:
+        description:
+            - Disable audio
+        type: bool
+
+    rdp_client_name:
+        description:
+            - Sets the RDP client name
+        type: str
+
     ssh_passphrase:
         description:
             - Passphrase for the SSH private key
@@ -483,7 +498,10 @@ def guacamole_populate_connection_payload(module_params):
             "height",
             "resize_method",
             "console",
-            "enable_font_smoothing"
+            "enable_font_smoothing",
+            "enable_wallpaper",
+            "client_name",
+            "disable_audio"
         )
         guacamole_add_parameter(payload, module_params, parameters, "rdp")
         if module_params.get('rdp_ignore_server_certs'):
@@ -597,6 +615,9 @@ def main():
         rdp_height=dict(type='int'),
         rdp_console=dict(type='bool', default=False, required=False),
         rdp_enable_font_smoothing=dict(type='bool', default=True),
+        rdp_enable_wallpaper=dict(type='bool', default=True),
+        rdp_disable_audio=dict(type='bool', default=True),
+        rdp_client_name=dict(type='str', default='none'),
         state=dict(type='str', choices=['absent', 'present'], default='present'),
         max_connections=dict(type='int', required=False),
         max_connections_per_user=dict(type='int'),
