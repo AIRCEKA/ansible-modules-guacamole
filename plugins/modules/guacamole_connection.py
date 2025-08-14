@@ -211,7 +211,7 @@ options:
             - Sets session as admin
         type: bool
 
-    rdp_enable-font-smoothing:
+    rdp_enable_font_smoothing:
         description:
             - Enable font smoothing
         type: bool
@@ -596,7 +596,7 @@ def main():
         rdp_width=dict(type='int'),
         rdp_height=dict(type='int'),
         rdp_console=dict(type='bool', default=False, required=False),
-        rdp_enable_font_smoothinge=dict(type='bool', default=True),
+        rdp_enable_font_smoothing=dict(type='bool', default=True),
         state=dict(type='str', choices=['absent', 'present'], default='present'),
         max_connections=dict(type='int', required=False),
         max_connections_per_user=dict(type='int'),
